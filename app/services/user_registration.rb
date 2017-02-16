@@ -21,20 +21,28 @@ class UserRegistration
   private
 
   def _run
-    @ran and return
-    uid = "%s|%s" % [
+    @ran && return
+    uid = '%s|%s' % [
       @auth_hash['provider'],
       @auth_hash['uid']
     ]
 
     if user = User.find(uid: uid).first
+      # fill in emails from users who don't have them, or update the address on
+      #   file, in case it's changed github-side
+      user.email = @auth_hash['info']['email'],
+                   user.updated_at = Time.current.utc.to_i
       @user    = user
       @created = false
+
+      user.save # TODO: latency impact?
     else
       @user = User.create(
-        uid:        uid, 
+        uid:        uid,
         name:       @auth_hash['info']['name'],
-        created_at: Time.current.utc.to_i
+        email:      @auth_hash['info']['email'],
+        created_at: Time.current.utc.to_i,
+        updated_at: Time.current.utc.to_i
       )
       @created = true
     end

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILES=("app/controllers/votes_controller.rb" "spec/controllers/movies_controller_spec.rb" "spec/controllers/votes_controller_spec.rb")
+FILES=("app/controllers/votes_controller.rb" "app/models/user.rb" "app/services/email.rb" "app/services/email_services.rb" "app/services/user_registration.rb" "spec/controllers/movies_controller_spec.rb" "spec/controllers/votes_controller_spec.rb")
 
 rubocop -a -R -n "${FILES[@]}"
 

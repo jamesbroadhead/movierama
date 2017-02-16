@@ -38,4 +38,8 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   OmniAuth.config.full_host = "https://movierama.dev"
+
+  # Select an email provider from ['log_only', 'mailgun']
+  # TODO: config validation
+  config.email.provider = 'log_only'
 end

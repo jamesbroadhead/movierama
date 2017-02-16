@@ -3,6 +3,12 @@ class VotesController < ApplicationController
     authorize! :vote, _movie
 
     _voter.vote(_type)
+
+    # TODO: should Email be some kind of persistent service?
+    # send the movie-creator an email about the vote
+    Email.new.send_email(_movie_creator, 'vote_received',
+                         'movie': _movie)
+
     redirect_to root_path, notice: 'Vote cast'
   end
 
@@ -29,5 +35,9 @@ class VotesController < ApplicationController
 
   def _movie
     @_movie ||= Movie[params[:movie_id]]
+  end
+
+  def _movie_creator
+    @_movie_creator = _movie.user
   end
 end

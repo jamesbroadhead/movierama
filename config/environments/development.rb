@@ -33,4 +33,23 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   OmniAuth.config.full_host = "https://movierama.dev"
+
+  # Select an email provider from ['log_only', 'mailgun']
+  # TODO: config validation
+  config.email_provider = 'mailgun'
+
+  config.email_mailgun_api_key = 'key-c37046d1e571eb78c835613c272ee543'
+  config.email_mailgun_domain = 'sandbox3ceb4f2a8a3c4f189c9d38cec78a16ca.mailgun.org'
+
+	config.action_mailer.delivery_method = :smtp
+	# SMTP settings for mailgun
+	ActionMailer::Base.smtp_settings = {
+		:port           => 587,
+		:address        => "smtp.mailgun.org",
+		:domain         => 'sandbox3ceb4f2a8a3c4f189c9d38cec78a16ca.mailgun.org',
+		:user_name      => 'postmaster@sandbox3ceb4f2a8a3c4f189c9d38cec78a16ca.mailgun.org',
+
+		:password       => '24c80f55a887e54d9fd3d8d1b7524ca4',
+		:authentication => :plain,
+	}
 end
