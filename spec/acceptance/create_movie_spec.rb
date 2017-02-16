@@ -7,10 +7,6 @@ RSpec.describe 'submit movie', type: :feature do
 
   let(:page) { Pages::MovieNew.new }
 
-  context 'when logged out' do
-    it 'fails'
-  end
-
   context 'when logged in' do
     with_logged_in_user
     before { page.open }
@@ -22,8 +18,6 @@ RSpec.describe 'submit movie', type: :feature do
         date:        '1957-10-02')
       expect(page).to have_movie_creation_message
     end
-
-    it 'makes the movie visible on the home page'
 
     it 'fails without a date' do
       page.submit(
