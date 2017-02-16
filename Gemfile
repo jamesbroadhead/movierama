@@ -21,6 +21,7 @@ gem 'rack-ssl'
 # Use Redis as backing store
 gem 'ohm'
 gem 'ohm-contrib'
+gem 'ohm-validations'
 
 # ♥︎ thin models
 gem 'draper'
@@ -52,16 +53,21 @@ gem 'omniauth' # Authentication
 gem 'omniauth-github'
 gem 'cancan'   # Authorisation
 
+# Email sending
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 
 # Debugger
 gem 'pry'
 gem 'pry-nav'
 gem 'pry-doc'
 
+gem 'byebug'
 
 group :test do
   gem 'guard-rspec'    # Continuous testing
   gem 'rspec-rails'    # Test framework with Rail extensions
   gem 'poltergeist'    # Driver for PhantomJS headless browser
   gem 'capybara'       # DSL for browser control
+  gem 'rubocop'
+  gem 'rails_best_practices'
 end

@@ -17,8 +17,13 @@ Github has a nice link. Right there, on the right of your page!
 
 #### Dependencies
 
-Install Ruby 2.1.2 if necessary (if you use `rbenv`, it will yell at you if you
+Install Ruby 2.2.2 if necessary (if you use `rbenv`, it will yell at you if you
 don't).
+
+Using `rbenv` gemsets:
+    $ cd movierama
+    $ rbenv gemset create 2.2.2 movierama
+    $ echo -n "movierama" > .rbenv-gemsets
 
 Run `bundler` as usual:
 
@@ -37,16 +42,16 @@ Check that everything works by seeding the database with a few users and movies:
 As the application requires HTTPS, you will need a local setup that supports
 that.
 
-Follow [these instructions](http://dec0de.me/2014/10/pow-ssl/) if you usually
-use Pow; otherwise:
-
 Install `tunnelss`:
 
     $ gem install tunnelss
+    $ mkdir -p $HOME/.pow
+    $ ln -s $HOME/<path...>/movierama $HOME/.pow/movierama
+    $ rbenv rehash
 
 Run the SSL tunnel in a terminal:
 
-    $ tunnelss 24676 24675
+    $ sudo tunnelss 443 24675
 
 Run the application on the corresponding port:
 
@@ -65,6 +70,10 @@ Login/signup use Omniauth with Github as a provider. If you're using Pow and the
 If not, you'll need to get your own OAuth tokens from Github and edit
 `.env` appropriately.
 
+
+#### Running the test suite
+
+    $ rspec
 
 
 ### Screenshot

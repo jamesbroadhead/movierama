@@ -1,0 +1,7 @@
+#!/bin/bash
+
+FILES=("app/controllers/votes_controller.rb" "spec/controllers/movies_controller_spec.rb" "spec/controllers/votes_controller_spec.rb")
+
+rubocop -a -R -n "${FILES[@]}"
+
+rails_best_practices "${FILES[@]}"

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo $(which tunnelss) 443 24675
